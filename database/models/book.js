@@ -9,6 +9,6 @@ const bookSchema = new Schema ({
     image: { type:String, required:true},
     link: { type:String, required:true},
 });
-const Book=mongoose.model('Book', bookSchema);
+const Book = mongoose.model('Book', bookSchema);
 
 module.exports = Book;

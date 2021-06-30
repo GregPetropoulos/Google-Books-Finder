@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import ViewBtn from "../components/ViewBtn";
-
-import { List, ListItem } from '../components/List'
-import { Col, Row, Container } from "../components/Grid";
+import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import { Col, Row, Container } from "../components/Grid";
+import { List, ListItem } from '../components/List'
 
 class Books extends Component {
   state = {
@@ -19,25 +18,36 @@ class Books extends Component {
   componentDidMount() {
     this.loadBooks();
   }
-
+  
   loadBooks = () => {
     API.getBooks()
-      .then(res =>
-        this.setState({
-          books: res.data,
-          title: "",
-          author: "",
-          description: "",
-          image: "",
-          link: "",
-        })
+    .then(res =>
+      this.setState({
+        books: res.data,
+        title: "",
+        author: "",
+        description: "",
+        image: "",
+        link: "",
+      })
       )
       .catch(err => console.log(err));
-  };
-
-  render() {
-    return (
-      <Container fluid>
+    };
+    
+    viewBook =url => {
+      window.location =url;
+    }
+    
+    deleteBook = id => {
+      API.deleteBook(id)
+      .then(res => this.loadBooks())
+      .catch(err => console.log(err))
+    };
+    
+    render() 
+    {
+      return (
+        <Container fluid>
         <Row>
           <Jumbotron>
             <h1>(React) Google Book Search</h1>
@@ -54,7 +64,7 @@ class Books extends Component {
                       className="float-left mb-1 mr-4"
                       src={book.image}
                       alt={book.title}
-                    />
+                      />
                     <Row>
                       <Col lPadding="0" size="8">
                         <strong>{book.title}</strong>
@@ -71,7 +81,7 @@ class Books extends Component {
               </List>
             ) : (
               <h3>No results to Display</h3>
-            )}
+              )}
           </Container>
         </Row>
       </Container>
