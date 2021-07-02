@@ -12,7 +12,7 @@ export default {
 
     // DELETES THE BOOK WITH GIVEN ID
     deleteBook: (id) => {
-        return axios.delete(`api//books/${id}`);
+        return axios.delete(`api/books/${id}`);
     },
     // SAVE BOOKS TO DB
     saveBook: (bookData) => {

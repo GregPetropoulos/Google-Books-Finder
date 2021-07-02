@@ -2,7 +2,9 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from'./components/Nav';
 import Books from './pages/Books';
-// import Search from '.pages/Search';
+import Search from './pages/Search';
+import NotFound from './pages/NotFound';
+
 
 
 function App () {
@@ -13,8 +15,8 @@ function App () {
         <Switch>
           <Route exact path='/' component={Books}/>
           <Route exact path ='/books' component={Books}/>
-          {/* <Route exact path='/search/' component={Search}/> */}
-          {/* <Route component={NoMatch}/> */}
+          <Route exact path='/search/' component={Search}/>
+          <Route component={NotFound}/>
         </Switch>
       </div>
     </Router>

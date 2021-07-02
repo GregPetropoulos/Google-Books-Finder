@@ -31,8 +31,14 @@ class Books extends Component {
         link: "",
       })
       )
-      .catch(err => console.log(err));
-    };
+
+      .catch(() =>
+        this.setState({
+          books: [],
+          message: "Uh oh!"
+        })
+       ) 
+      };
     
     viewBook =url => {
       window.location =url;
@@ -44,8 +50,10 @@ class Books extends Component {
       .catch(err => console.log(err))
     };
     
-    render() 
-    {
+    render() {
+      console.log(this.state.books)
+      console.log(typeof this.state.books)
+
       return (
         <Container fluid>
         <Row>
